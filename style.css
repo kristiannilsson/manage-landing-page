@@ -1,16 +1,19 @@
 /* GLOBAL RULES AND COMPONENTS */
-/* TODO: fix all colors */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html {
-  /* TODO: fix bg*/
   font-family: "Be Vietnam", sans-serif;
   font-size: 14px;
   text-align: center;
+}
+
+a {
+  all: unset;
+  cursor: pointer;
 }
 
 p {
@@ -27,20 +30,24 @@ ul {
   all: unset;
   background-color: hsl(12, 88%, 59%);
   border-radius: 4rem;
-  padding: 1rem 2.3rem;
-  color: white;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  color: white;
+  cursor: pointer;
+  padding: 1rem 2.3rem;
 }
 
-.active-state:active {
+.active-brighter:active {
+  filter: brightness(150%);
+  transition: filter 200ms;
+}
+
+.active-opacity:active {
   opacity: 0.6;
+  transition: opacity 100ms;
 }
 
 /* HEADER */
 header {
-  background-position: left 20vw top -10vh;
-  background-size: contain;
-  background: url("./images/bg-tablet-pattern.svg") no-repeat;
   display: flex;
   flex-direction: column;
   font-size: 1.2rem;
@@ -53,9 +60,9 @@ nav {
   align-items: flex-start;
   display: flex;
   justify-content: space-between;
+  padding: 2.5vh 0;
   width: 100%;
   z-index: 1;
-  padding: 2.5vh 0;
 }
 
 /* In mobile version the red button is not visible */
@@ -81,9 +88,13 @@ nav .red-btn {
   width: 85%;
 }
 
+#menu li:active {
+  opacity: 0.5;
+}
+
 .fade-overlay {
   background: linear-gradient(
-    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.2) 0,
     rgba(5, 6, 12, 0.6) 100vh
   );
   display: none;
@@ -105,6 +116,20 @@ nav .red-btn {
   width: 100%;
 }
 
+.header-content::before {
+  background-image: url("./images/bg-tablet-pattern.svg");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 120%;
+  content: "";
+  height: 45vh;
+  left: 25%;
+  position: absolute;
+  top: 0;
+  width: 75%;
+  z-index: -1;
+}
+
 .hero-text button {
   margin: 2rem 0;
 }
@@ -116,13 +141,28 @@ h1 {
 
 /* What's different? section */
 
-main {
+.selling-points {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .whats-different {
   padding: 3% 7.5%;
+}
+
+.whats-different::before {
+  background-image: url("./images/bg-tablet-pattern.svg");
+  background-position: left 10vw bottom;
+  background-repeat: no-repeat;
+  background-size: 180%;
+  content: "";
+  height: 100vh;
+  left: 50%;
+  position: absolute;
+  top: -100vh;
+  width: 50%;
+  z-index: -1;
 }
 
 .whats-different h2 {
@@ -131,13 +171,13 @@ main {
 }
 
 .bullet-point-container {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  padding: 3%;
-  width: 100%;
-  text-align: left;
   overflow: hidden;
+  padding: 3%;
+  text-align: left;
+  width: 100%;
 }
 
 .bullet-point-container h3 {
@@ -147,21 +187,21 @@ main {
 
 .bullet-point-container button {
   box-shadow: none;
-  position: relative;
-  padding: 0.6rem 1.7rem;
   font-size: 1.2rem;
+  padding: 0.6rem 1.7rem;
+  position: relative;
 }
 
 .bullet-point-button::after {
-  position: absolute;
-  content: "";
   background: linear-gradient(to right, hsl(13, 100%, 96%) 80%, white);
-  width: 100vw;
-  height: 100%;
   bottom: 0;
-  left: 30px;
-  z-index: -1;
   box-sizing: border-box;
+  content: "";
+  height: 100%;
+  left: 30px;
+  position: absolute;
+  width: 100vw;
+  z-index: -1;
 }
 
 .bullet-point-container p {
@@ -186,32 +226,32 @@ main {
 }
 
 .testimonial-text {
-  padding: 2rem 1rem;
   margin: 0;
+  padding: 2rem 1rem;
 }
 
 .testimonial-header {
-  padding: 4.2rem 0 1rem 0;
   font-size: 1.2rem;
+  padding: 4.2rem 0 1rem;
 }
 .testimonial-pic {
-  width: 6rem;
   height: auto;
   position: relative;
   top: 3rem;
+  width: 6rem;
 }
 
 ul.splide__pagination {
-  position: unset;
   bottom: unset;
   left: unset;
-  transform: unset;
   margin: 2rem 0;
+  position: unset;
+  transform: unset;
 }
 
 li > .splide__pagination__page {
-  border: 1px solid hsl(12, 88%, 59%);
   background: none;
+  border: 1px solid hsl(12, 88%, 59%);
 }
 
 li > .splide__pagination__page.is-active {
@@ -224,21 +264,25 @@ li > .splide__pagination__page.is-active {
 
 /* Simplify-section */
 .inverse-colors {
-  color: hsl(12, 88%, 59%);
   background-color: white;
+  color: hsl(12, 88%, 59%);
 }
 
 .cta {
+  align-items: center;
   background-color: hsl(12, 88%, 59%);
+  background-image: url("./images/bg-simplify-section-mobile.svg");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 12% 6%;
 }
 
 .cta > h2 {
-  font-size: 3rem;
   color: white;
+  font-size: 3rem;
 }
 
 .cta > button {
@@ -248,28 +292,28 @@ li > .splide__pagination__page.is-active {
 /* Footer */
 footer {
   background-color: hsl(233, 12%, 13%);
+  color: white;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  color: white;
-  text-align: left;
   padding: 5%;
+  text-align: left;
 }
 
 form {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
   margin: 2rem 0;
   position: relative;
+  width: 100%;
 }
 
 form > input {
-  flex-grow: 1;
-  margin-right: 1rem;
-  height: 3.5rem;
   border-radius: 3rem;
+  flex-grow: 1;
+  height: 3.5rem;
+  margin-right: 1rem;
   padding-left: 1.5rem;
 }
 
@@ -278,48 +322,57 @@ form > button:disabled {
 }
 
 form > p {
-  position: absolute;
-  top: 2.5rem;
-  left: 1.5rem;
   color: hsl(12, 88%, 59%);
   display: none;
+  left: 1.5rem;
+  position: absolute;
+  top: 2.5rem;
 }
 
-.logo-group > img {
-  width: 12rem;
-}
 .logo-group {
-  display: flex;
   align-items: center;
+  display: flex;
+  justify-content: space-between;
   flex-direction: column;
   width: 100%;
+  height: 15vh;
 }
 
 .logo-group > ul {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  width: 50%;
 }
 
-footer li {
-  margin: 1rem;
+.footer-nav li {
+  margin-bottom: 1rem;
 }
 
-.logo-group li img {
-  margin: 1rem 0;
-  width: 2.2rem;
+.footer-nav li:hover {
+  color: hsl(12, 88%, 59%);
+}
+
+.logo-group li svg {
+  transform: scale(150%);
 }
 
 .logo-group svg {
-  margin: 1rem 0;
+  margin-right: 1rem;
+  fill: white;
+}
+
+.logo-group svg:active {
+  fill: hsl(12, 88%, 59%);
+  transition: fill 200ms;
 }
 
 .copyright-text {
+  background-color: hsl(233, 12%, 13%);
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.9rem;
-  background-color: hsl(233, 12%, 13%);
-  text-align: center;
-  padding: 0 5%;
   margin: 0;
+  padding: 0 5%;
+  text-align: center;
 }
 /* Mobile snap width */
 @media only screen and (min-width: 1100px) {
@@ -360,6 +413,16 @@ footer li {
     padding: 10% 0;
   }
 
+  .header-content::before {
+    background-position: left 10vw bottom;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 70vh;
+    left: 50%;
+    top: 0;
+    width: 50%;
+  }
+
   h1 {
     font-size: 3.5rem;
   }
@@ -374,8 +437,17 @@ footer li {
   }
 
   /* Main content */
-  main {
+  .selling-points {
     flex-direction: row;
+  }
+
+  .whats-different::before {
+    background-position: right top;
+    background-size: 180%;
+    height: 100vh;
+    left: 0;
+    top: 35vh;
+    width: 25%;
   }
 
   .whats-different > h2 {
@@ -398,9 +470,13 @@ footer li {
 
   /* Call-to-action */
   .cta {
+    align-items: flex-start;
+    background-image: url("./images/bg-simplify-section-desktop.svg");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
     padding: 5% 10%;
   }
   .cta > h2 {
@@ -414,40 +490,39 @@ footer li {
   footer {
     flex-wrap: nowrap;
     justify-content: space-between;
-    padding: 5% 10% 100px 10%;
+    padding: 5% 10% 100px;
   }
   .logo-group {
-    justify-content: space-between;
     flex-direction: column-reverse;
     order: -1;
-    width: unset;
+    width: 15vw;
+    flex-shrink: 0;
   }
-  .logo-group li {
-    margin: 0.1rem;
+
+  .logo-group ul {
+    width: 100%;
   }
+
   form {
-    order: 1;
-    justify-content: flex-end;
     align-items: flex-start;
+    justify-content: flex-end;
+    order: 1;
     width: unset;
-  }
-  #right-footer-nav {
-    margin: 0;
   }
   form .red-btn {
     margin: 0;
   }
   .copyright-text {
-    text-align: end;
-    padding: 0 10%;
     margin-top: -148px;
+    padding: 0 10%;
+    text-align: end;
   }
+}
 
-  @media only screen and (min-width: 1600px) {
-    /* Header */
-    #menu {
-      width: 60%;
-      flex-grow: 0;
-    }
+@media only screen and (min-width: 1600px) {
+  /* Header */
+  #menu {
+    width: 60%;
+    flex-grow: 0;
   }
 }
